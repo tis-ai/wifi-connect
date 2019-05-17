@@ -46,18 +46,19 @@ use exit::block_exit_signals;
 use privileges::require_root;
 
 fn main() {
-    if let Err(ref e) = run() {
-        let stderr = &mut ::std::io::stderr();
-        let errmsg = "Error writing to stderr";
-
         writeln!(stderr, "\x1B[1;31mError: {}\x1B[0m", e).expect(errmsg);
-
-        for inner in e.iter().skip(1) {
-            writeln!(stderr, "  caused by: {}", inner).expect(errmsg);
-        }
-
-        process::exit(exit_code(e));
-    }
+    // if let Err(ref e) = run() {
+    //     let stderr = &mut ::std::io::stderr();
+    //     let errmsg = "Error writing to stderr";
+    //
+    //     writeln!(stderr, "\x1B[1;31mError: {}\x1B[0m", e).expect(errmsg);
+    //
+    //     for inner in e.iter().skip(1) {
+    //         writeln!(stderr, "  caused by: {}", inner).expect(errmsg);
+    //     }
+    //
+    //     process::exit(exit_code(e));
+    // }
 }
 
 fn run() -> Result<()> {
