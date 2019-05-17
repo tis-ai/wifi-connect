@@ -357,7 +357,7 @@ fn get_access_points_impl(device: &Device) -> Result<Vec<AccessPoint>> {
 
         if !access_points.is_empty() {
             info!(
-                "Access points: {:?}",
+                "Access points with Secret SSID: {:?}",
                 get_access_points_ssids(&access_points)
             );
             return Ok(access_points);
