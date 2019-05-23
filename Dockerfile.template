@@ -6,6 +6,10 @@ WORKDIR /usr/src/app
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable
 ENV PATH $PATH:$HOME/.cargo/bin
+RUN echo $PATH
+RUN ls $HOME/.cargo/bin
+RUN pwd cargo
+RUN ls
 
 RUN git clone -b compile_wifi-connect https://github.com/tis-ai/wifi-connect.git
 
