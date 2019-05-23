@@ -5,7 +5,7 @@ RUN install_packages dnsmasq wireless-tools git
 WORKDIR /usr/src/app
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable
-ENV PATH $PATH:$HOME/.cargo/env
+ENV PATH $PATH:$HOME/.cargo/bin
 
 RUN git clone -b compile_wifi-connect https://github.com/tis-ai/wifi-connect.git
 
