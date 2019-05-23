@@ -24,7 +24,7 @@ if [ $? -eq 0 ]; then
     printf 'Skipping WiFi Connect\n'
 else
     printf 'Starting WiFi Connect\n'
-    ./wifi-connect --portal-ssid "$wifi_connect_portal_ssid"
+    ./wifi-connect
 fi
 
 # Start your application here.

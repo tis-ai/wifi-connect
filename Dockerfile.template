@@ -1,14 +1,19 @@
 FROM balenalib/%%RESIN_MACHINE_NAME%%-debian
 
-RUN install_packages dnsmasq wireless-tools
+RUN install_packages dnsmasq wireless-tools git
 
 WORKDIR /usr/src/app
 
-RUN curl https://api.github.com/repos/balena-io/wifi-connect/releases/latest -s \
-    | grep -hoP 'browser_download_url": "\K.*%%RESIN_ARCH%%\.tar\.gz' \
-    | xargs -n1 curl -Ls \
-    | tar -xvz -C /usr/src/app/
+RUN curl https://sh.rustup.rs -sSf | sh
+RUN source $HOME/.cargo/env
 
-COPY scripts/start.sh .
+RUN git clone -b compile_wifi-connect https://github.com/tis-ai/wifi-connect.git
+
+RUN cd wifi-connect
+RUN cargo build --target=armv7-unknown-linux-gnueabihf
+RUN cd ../
+
+COPY wifi-connect/scripts/start.sh .
+COPY wifi-connect/target/armv7-unknown-linux-gnueabihf/wifi-connect .
 
 CMD ["bash", "start.sh"]
