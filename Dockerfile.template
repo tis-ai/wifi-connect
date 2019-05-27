@@ -4,7 +4,7 @@ RUN apt update && apt install dnsmasq wireless-tools build-essential git libdbus
 
 WORKDIR /usr/src/app
 
-RUN git clone -b compile_wifi-connect https://github.com/tis-ai/wifi-connect.git wifi-connect_dev
+RUN git clone -b compile/dev https://github.com/tis-ai/wifi-connect.git wifi-connect_dev
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable
 ENV PATH $PATH:/root/.cargo/bin
